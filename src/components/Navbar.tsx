@@ -311,7 +311,7 @@ const Navbar: React.FC = () => {
                         <a className="dropdown-item dropdown-item-custom" href="HowToTradeCFDs">How to Trade CFDs</a>
                         <a className="dropdown-item dropdown-item-custom" href="BondsAndTreasuries">Bonds & Treasuries</a>
                         <a className="dropdown-item dropdown-item-custom" href="ETFsTrading">ETFs Trading</a>
-                        <a className="dropdown-item dropdown-item-custom" href="EbookDownload">eBook</a>
+                      
                       </div>
                       {/* Column 3 */}
                       <div className="col-lg-2 col-12">
@@ -434,7 +434,7 @@ const Navbar: React.FC = () => {
               </li>
 
               {/* --- Education Dropdown --- */}
-              <li className="nav-item dropdown hover-dropdown position-static">
+              {/* <li className="nav-item dropdown hover-dropdown position-static">
                 <a
                     className="nav-link nav-link-custom dropdown-toggle"
                     href="#"
@@ -470,7 +470,7 @@ const Navbar: React.FC = () => {
                         </div>
                     </div>
                 </div>
-              </li>
+              </li> */}
 
                <li className="nav-item dropdown hover-dropdown position-static">
                 <a className="nav-link nav-link-custom dropdown-toggle" href="/about" role="button" data-bs-toggle="dropdown">
