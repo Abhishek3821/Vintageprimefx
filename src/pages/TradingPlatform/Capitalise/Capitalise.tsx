@@ -8,7 +8,7 @@ const CapitaliseAIBanner: React.FC = () => {
     <>
     <div
       style={{
-        backgroundImage: "url('/assets/back3.jpg')", // Replace with your actual background image
+        backgroundImage: "url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
@@ -18,6 +18,7 @@ const CapitaliseAIBanner: React.FC = () => {
         justifyContent: 'center',
         color: '#fff',
         position: 'relative',
+        background: 'blur(40px)',
       }}
     >
       <div
@@ -52,7 +53,7 @@ const CapitaliseAIBanner: React.FC = () => {
            </Button>
          </Col>
          <Col md={6}>
-           <img src="/assets/strategies-library.png" alt="Strategies Library" className="img-fluid" />
+           <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Strategies Library" className="img-fluid" />
          </Col>
        </Row>
 
@@ -67,7 +68,7 @@ const CapitaliseAIBanner: React.FC = () => {
            </p>
          </Col>
          <Col md={6}>
-           <img src="/assets/trade-ai.png" alt="AI Trading" className="img-fluid" />
+           <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="AI Trading" className="img-fluid" />
          </Col>
        </Row>
 
@@ -85,7 +86,7 @@ const CapitaliseAIBanner: React.FC = () => {
            </p>
          </Col>
          <Col md={6}>
-           <img src="/assets/trading-alerts.png" alt="Trading Alerts" className="img-fluid" />
+           <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Trading Alerts" className="img-fluid" />
          </Col>
        </Row>
 
@@ -103,7 +104,7 @@ const CapitaliseAIBanner: React.FC = () => {
            </Button>
          </Col>
          <Col md={6}>
-           <img src="/assets/research-analysis.png" alt="Research & Analysis" className="img-fluid" />
+           <img src="https://images.unsplash.com/photo-1594322463847-81e2bd5f9888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" alt="Research & Analysis" className="img-fluid" />
          </Col>
        </Row>
 
@@ -154,7 +155,7 @@ const CapitaliseAIBanner: React.FC = () => {
 
           <Col md={6}>
             <img
-              src="/assets/capitalise-mt4.png"
+              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
               alt="Capitalise.ai MT4 integration"
               className="img-fluid"
               style={{ maxHeight: '340px' }}

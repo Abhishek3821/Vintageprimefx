@@ -4,25 +4,25 @@ const teamMembers = [
   {
     name: "Dáire Ferguson",
     role: "CEO, AvaTrade",
-    image: "/images/team/ferguson.jpg",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
     description: `Mr. Ferguson came to AvaTrade after serving as the European & Asian Senior Treasury Manager at Bristol Myers Squibb. He was Head of Corporate Forex in London & Dublin.`,
   },
   {
     name: "Sari Hemmendinger",
     role: "CFO",
-    image: "/images/team/sari.jpg",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
     description: `Mrs. Hemmendinger joined AvaTrade in 2015 after serving as a Senior Manager at PwC. She holds an LLM in Law and a B.A in Accounting.`,
   },
   {
     name: "Turlough McIntyre",
     role: "VP Risk Management",
-    image: "/images/team/turlough.jpg",
+    image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
     description: `Mr. McIntyre joined AvaTrade in 2011. He has degrees in Mathematics, Finance, and Capital Markets.`,
   },
   {
     name: "Ian Webb",
     role: "VP Compliance",
-    image: "/images/team/ian.jpg",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
     description: `Mr. Webb brings over 15 years of experience, including senior compliance roles at Citco and Deutsche Bank.`,
   },
 ];

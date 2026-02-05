@@ -481,7 +481,6 @@ const Navbar: React.FC = () => {
                         <div className="row g-4">
                             <div className="col-lg-4 col-12">
                                 <h6 className="menu-heading">Company</h6>
-                                <a className="dropdown-item dropdown-item-custom" href="VintagePrimeFXReviews">Reviews</a>
                                 <a className="dropdown-item dropdown-item-custom" href="WhyChoosePipzomarket">Why Us?</a>
                                 <a className="dropdown-item dropdown-item-custom" href="RegulationTrustPage">Regulation</a>
                                 <a className="dropdown-item dropdown-item-custom" href="LeadershipTeam">Management</a>
@@ -489,9 +488,8 @@ const Navbar: React.FC = () => {
                             <div className="col-lg-4 col-12">
                                 <h6 className="menu-heading">Support</h6>
                                 <a className="dropdown-item dropdown-item-custom" href="/about">About</a>
-                                <a className="dropdown-item dropdown-item-custom" href="#">Contact Us</a>
                                 <a className="dropdown-item dropdown-item-custom" href="DepositsWithdrawals">Deposits & Withdrawals</a>
-                                <a className="dropdown-item dropdown-item-custom" href="#">Interest Rates</a>
+                                
                             </div>
                         </div>
                     </div>

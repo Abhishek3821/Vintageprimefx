@@ -1,6 +1,4 @@
 import React from "react";
-import bgImageDeposit from "../../assets/images/image.png";
-
 const DepositsWithdrawals = () => {
   return (
     <div>
@@ -8,7 +6,7 @@ const DepositsWithdrawals = () => {
       <section
         className="text-white text-center position-relative"
         style={{
-          backgroundImage: `url(${bgImageDeposit})`,
+          backgroundImage: "url(https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "60vh",
@@ -44,7 +42,7 @@ const DepositsWithdrawals = () => {
         {[
           {
             title: "Simple Deposits",
-            image: "/images/deposit.svg",
+            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
             items: [
               {
                 label: "Multiple Options",
@@ -64,7 +62,7 @@ const DepositsWithdrawals = () => {
           },
           {
             title: "Fast Withdrawals, On Your Own Terms",
-            image: "/images/withdraw.svg",
+            image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
             items: [
               {
                 label: "Easy Requests",
@@ -84,7 +82,7 @@ const DepositsWithdrawals = () => {
           },
           {
             title: "Very Safe",
-            image: "/images/security.svg",
+            image: "https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
             items: [
               { label: "Encrypted Gateways", desc: "for all transactions" },
               {
@@ -101,7 +99,7 @@ const DepositsWithdrawals = () => {
           },
           {
             title: "Policies That Are Easy to Understand",
-            image: "/images/policies.svg",
+            image: "https://images.unsplash.com/photo-1594322463847-81e2bd5f9888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80",
             items: [
               {
                 label: "Clear Limits",
@@ -120,7 +118,7 @@ const DepositsWithdrawals = () => {
           },
           {
             title: "Accessibility All Around the Globe",
-            image: "/images/global.svg",
+            image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80",
             items: [],
             reverse: false,
             note: "We work with customers from across the world — supporting various currencies, financial systems, and regions. No matter where you're located, it's easier than ever to fund or withdraw from your trading account.",

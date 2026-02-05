@@ -1,14 +1,13 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import bgImagewhy from "../../assets/images/image.png";
 const WhyChoosePipzomarket: React.FC = () => {
   return (
     <div className="bg-white text-dark">
       <section
         className="text-white py-5 text-center"
         style={{
-          backgroundImage: `url(${bgImagewhy})`,
+          backgroundImage: "url(https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
@@ -73,7 +72,7 @@ const WhyChoosePipzomarket: React.FC = () => {
             {/* Right: Image */}
             <div className="col-md-6 text-center">
               <img
-                src="/assets/images/forex1.jpg" // replace with your image path or import
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Regulated and Secure"
                 className="img-fluid rounded shadow-sm"
               />
@@ -88,12 +87,12 @@ const WhyChoosePipzomarket: React.FC = () => {
             {/* Left Column: Image */}
             <div className="col-md-6 mb-4 mb-md-0 text-center">
               <img
-                src="/assets/images/chart.png" // ✅ Update path if needed
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Institutional Grade Execution"
                 className="img-fluid rounded shadow-sm"
               />
             </div>
-
+                        
             {/* Right Column: Text */}
             <div className="col-md-6">
               <h2 className="text-success fw-bold mb-4">
@@ -176,7 +175,7 @@ const WhyChoosePipzomarket: React.FC = () => {
             {/* Left Column: Image */}
             <div className="col-md-6 mb-4 mb-md-0 text-center">
               <img
-                src="/assets/images/forex1.jpg" // ✅ Replace with appropriate image or import
+                src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
                 alt="Global Asset Access"
                 className="img-fluid rounded shadow-sm"
               />
@@ -193,7 +192,7 @@ const WhyChoosePipzomarket: React.FC = () => {
             {/* Image Column */}
             <div className="col-md-6 text-center">
               <img
-                src="/images/trade-anywhere.png"
+                src="https://images.unsplash.com/photo-1594322463847-81e2bd5f9888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
                 alt="Trade Anywhere"
                 className="img-fluid rounded shadow-sm"
                 style={{ maxHeight: "350px" }}
@@ -261,7 +260,7 @@ const WhyChoosePipzomarket: React.FC = () => {
             {/* Image Column */}
             <div className="col-md-6 text-center">
               <img
-                src="/images/advanced-tools.png"
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
                 alt="Advanced Trading Tools"
                 className="img-fluid rounded shadow-sm"
                 style={{ maxHeight: "350px" }}
@@ -302,7 +301,7 @@ const WhyChoosePipzomarket: React.FC = () => {
             {/* Image Column */}
             <div className="col-md-6 text-center">
               <img
-                src="/images/support-team.png"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Priority Support"
                 className="img-fluid rounded shadow-sm"
                 style={{ maxHeight: "350px" }}
@@ -347,7 +346,7 @@ const WhyChoosePipzomarket: React.FC = () => {
             {/* Image Column */}
             <div className="col-md-6 text-center">
               <img
-                src="/images/professionals-tools.png"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Built for Professionals"
                 className="img-fluid rounded shadow-sm"
                 style={{ maxHeight: "350px" }}
@@ -362,7 +361,7 @@ const WhyChoosePipzomarket: React.FC = () => {
           <div className="row align-items-center">
             <div className="col-md-6 text-center">
               <img
-                src="/images/honest-pricing.png"
+                src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
                 alt="Honest Pricing Illustration"
                 className="img-fluid rounded shadow-sm"
                 style={{ maxHeight: "350px" }}

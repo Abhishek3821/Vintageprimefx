@@ -17,7 +17,7 @@ const AlgorithmicBanner = () => {
             trades efficiently.
           </p>
           <img
-            src="/assets/algorithmic-trading-banner.jpg"
+            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
             alt="Algorithmic Trading"
             className="img-fluid w-100"
             style={{
@@ -73,7 +73,7 @@ const AlgorithmicBanner = () => {
 
             <Col md={6}>
               <img
-                src="/assets/algorithmic-trading-info.jpg"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Algorithmic Trading"
                 className="img-fluid rounded shadow"
                 style={{ maxHeight: "700px", objectFit: "cover" }}
@@ -146,7 +146,7 @@ const AlgorithmicBanner = () => {
             {/* Right Column - Image */}
             <Col md={6} className="text-center mt-4 mt-md-0">
               <img
-                src="https://via.placeholder.com/800x450"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Automated Trading in MT5"
                 className="img-fluid"
                 style={{ maxHeight: "450px" }}
@@ -211,7 +211,7 @@ const AlgorithmicBanner = () => {
 
             <Col md={6}>
               <img
-                src="/assets/expert-advisors-mt5.png"
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
                 alt="Expert Advisors MT5"
                 className="img-fluid rounded shadow"
                 style={{ maxHeight: "700px", objectFit: "cover" }}

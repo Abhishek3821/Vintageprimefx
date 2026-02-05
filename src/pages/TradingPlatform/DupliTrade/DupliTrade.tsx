@@ -6,7 +6,7 @@ const DupliTradeBanner: React.FC = () => {
     <>
       <div
         style={{
-          backgroundImage: "url('/assets/back3.jpg')",
+          backgroundImage: "url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -89,7 +89,7 @@ const DupliTradeBanner: React.FC = () => {
             </Col>
             <Col md={6}>
               <img
-                src="/assets/pipzo-connect.png"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt=" Vintageprimefx Connect App"
                 className="img-fluid"
               />
@@ -103,7 +103,7 @@ const DupliTradeBanner: React.FC = () => {
           <Row className="align-items-center">
             <Col md={6}>
               <img
-                src="/assets/avasocial-simple.png"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Trading Made Simple"
                 className="img-fluid"
               />

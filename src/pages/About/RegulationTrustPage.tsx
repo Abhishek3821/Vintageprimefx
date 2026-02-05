@@ -1,13 +1,11 @@
 import React from "react";
-import bgImageTrust from "../../assets/images/image.png";
-
 const RegulationTrustPage = () => {
   return (
     <div>
       <section
         className="text-white py-5 text-center position-relative"
         style={{
-          backgroundImage: `url(${bgImageTrust})`,
+          backgroundImage: "url(https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80)",
           backgroundSize: "cover",
           backgroundPosition: "center",
           minHeight: "55vh",
@@ -60,7 +58,7 @@ const RegulationTrustPage = () => {
             {/* Right Side: Visual (Image or Illustration) */}
             <div className="col-md-6 text-center">
               <img
-                src="/images/global-regulation.svg"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Global Regulation Illustration"
                 className="img-fluid"
                 style={{ maxHeight: "320px" }}
@@ -134,7 +132,7 @@ const RegulationTrustPage = () => {
             {/* Left Side: Image or Illustration */}
             <div className="col-md-6 mb-4 mb-md-0 text-center">
               <img
-                src="/images/secure-funds.svg" // replace with your actual image path
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Secure Funds Illustration"
                 className="img-fluid"
                 style={{ maxHeight: "300px" }}
@@ -183,7 +181,7 @@ const RegulationTrustPage = () => {
             {/* Right Side: Image or Visual */}
             <div className="col-md-6 text-center">
               <img
-                src="/images/fair-trade.svg" // Replace with your actual image path
+                src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
                 alt="Fair Trading Illustration"
                 className="img-fluid"
                 style={{ maxHeight: "300px" }}
@@ -199,7 +197,7 @@ const RegulationTrustPage = () => {
             {/* Right Side: Illustration */}
             <div className="col-md-6 text-center">
               <img
-                src="/images/global-trust.svg" // Replace with your actual image path
+                src="https://images.unsplash.com/photo-1594322463847-81e2bd5f9888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
                 alt="Global Trust Illustration"
                 className="img-fluid"
                 style={{ maxHeight: "300px" }}
