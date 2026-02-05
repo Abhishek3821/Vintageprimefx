@@ -86,7 +86,7 @@ const PipzoMarketsMacTrading: React.FC = () => {
           <Row className="mt-5">
             <Col>
               <img
-                src="/assets/pipzomarkets-mac-trading.png"
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
                 alt=" Vintageprimefx Mac Trading"
                 className="img-fluid w-100"
                 style={{
@@ -197,7 +197,7 @@ const PipzoMarketsMacTrading: React.FC = () => {
             </Col>
             <Col md={6} className="text-center">
               <img
-                src="/assets/pipzomarkets-metatrader4-mac.png"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="MetaTrader 4 Mac"
                 className="img-fluid"
                 style={{
@@ -271,7 +271,7 @@ const PipzoMarketsMacTrading: React.FC = () => {
             </Col>
             <Col md={6} className="text-center order-md-1">
               <img
-                src="/assets/pipzomarkets-metatrader5-mac.png"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="MetaTrader 5 Mac"
                 className="img-fluid"
                 style={{
@@ -331,7 +331,7 @@ const PipzoMarketsMacTrading: React.FC = () => {
             </Col>
             <Col md={6} className="text-center">
               <img
-                src="/assets/pipzomarkets-install-expert-mac.png"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Install Custom Tools on Mac"
                 className="img-fluid"
                 style={{
@@ -418,7 +418,7 @@ const PipzoMarketsMacTrading: React.FC = () => {
             </Col>
             <Col md={6} className="text-center mt-4 mt-md-0">
               <img
-                src="/assets/pipzomarkets-download-mac-guide.png"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Download MetaTrader Mac"
                 className="img-fluid"
                 style={{

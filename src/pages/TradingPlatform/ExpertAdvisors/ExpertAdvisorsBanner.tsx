@@ -81,7 +81,7 @@ const PipzoMarketsExpertAdvisors: React.FC = () => {
           <Row className="mt-5">
             <Col>
               <img
-                src="/assets/pipzomarkets-expert-advisors.png"
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
                 alt=" Vintageprimefx Expert Advisors"
                 className="img-fluid w-100"
                 style={{
@@ -182,7 +182,7 @@ const PipzoMarketsExpertAdvisors: React.FC = () => {
             </Col>
             <Col md={6} className="text-center">
               <img
-                src="/assets/pipzomarkets-metatrader-market.png"
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="MetaTrader Market"
                 className="img-fluid"
                 style={{
@@ -252,7 +252,7 @@ const PipzoMarketsExpertAdvisors: React.FC = () => {
             </Col>
             <Col md={6} className="text-center order-md-1">
               <img
-                src="/assets/pipzomarkets-upload-ea-mac.png"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Upload Expert Advisors Mac"
                 className="img-fluid"
                 style={{
@@ -303,7 +303,7 @@ const PipzoMarketsExpertAdvisors: React.FC = () => {
             </Col>
             <Col md={6} className="text-center">
               <img
-                src="/assets/pipzomarkets-ea-benefits.png"
+                src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
                 alt="Expert Advisors Benefits"
                 className="img-fluid"
                 style={{
@@ -365,7 +365,7 @@ const PipzoMarketsExpertAdvisors: React.FC = () => {
             </Col>
             <Col md={6} className="text-center mt-4 mt-md-0">
               <img
-                src="/assets/pipzomarkets-ea-faq.png"
+                src="https://images.unsplash.com/photo-1594322463847-81e2bd5f9888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80"
                 alt="Expert Advisors FAQ"
                 className="img-fluid"
                 style={{

@@ -25,7 +25,7 @@ const VPSBanner: React.FC = () => {
         <Row className="mt-5">
           <Col>
             <img
-              src="https://via.placeholder.com/1200x400"
+              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
               alt="VPS Trading"
               className="img-fluid w-100"
               style={{ height: 'auto' }}
@@ -62,7 +62,7 @@ const VPSBanner: React.FC = () => {
 
          <Col md={6} className="text-center">
            <img
-             src="/assets/vps-server.png" // Replace with your VPS image path
+             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
              alt="Virtual Private Server"
              className="img-fluid"
              style={{

@@ -1,4 +1,3 @@
-import { left } from '@popperjs/core';
 import React from 'react';
 import { Container, Button, Card, Col, Row, Accordion } from 'react-bootstrap';
 import { FaArrowRight, FaChartLine, FaCoins, FaEye, FaShieldAlt, FaUserPlus } from 'react-icons/fa';
@@ -8,7 +7,7 @@ const HowBitcoin: React.FC = () => {
     <>
     <div
     style={{
-      backgroundImage: "url('/assets/crypto-banner.jpg')", // Replace with your banner image path
+      backgroundImage: "url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80')", // Replace with your banner image path
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -202,7 +201,7 @@ and make informed decisions in our informative guide.      </p>
       {/* Right Side – Image */}
       <Col md={6}>
         <img
-          src="/assets/crypto-price-drivers.png"
+          src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
           alt="What moves cryptocurrency prices"
           className="img-fluid"
         />
@@ -377,7 +376,7 @@ and make informed decisions in our informative guide.      </p>
      
           <div className="my-3">
           <img
-  src="/assets/globe.png"
+  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
   alt="Global Regulation"
   style={{ width: '33%', height: 'auto' }}
 />

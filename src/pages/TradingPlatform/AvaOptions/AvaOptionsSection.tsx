@@ -94,7 +94,7 @@ const PizpoOptionsSection: React.FC = () => {
           <Row className="justify-content-center mt-5">
             <Col lg={12}>
               <img
-                src="/assets/pizpooptions-banner.png"
+                src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
                 alt="PizpoOptions Banner"
                 className="img-fluid w-100"
                 style={{ maxHeight: '400px', objectFit: 'cover' }}
@@ -145,7 +145,7 @@ const PizpoOptionsSection: React.FC = () => {
             {/* Right Image */}
             <Col md={6} className="text-center mt-4 mt-md-0">
               <img
-                src="/assets/options-phone.png"
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Options Platform"
                 className="img-fluid"
                 style={{ maxHeight: '450px' }}
@@ -168,32 +168,32 @@ const PizpoOptionsSection: React.FC = () => {
           <Row className="g-4">
             {[
               {
-                icon: '/assets/icon1.png',
+                icon: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
                 title: 'Create the Optimal Portfolio',
                 desc: 'Choose from 40+ currency pairs and combine CALL & PUT options. Execute strategies like Straddles, Spreads, or Reversals with one click.',
               },
               {
-                icon: '/assets/icon2.png',
+                icon: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
                 title: 'Get the Bigger Picture',
                 desc: 'PizpoOptions gives you full control over your portfolio — balance risk and reward to match your market outlook.',
               },
               {
-                icon: '/assets/icon3.png',
+                icon: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
                 title: 'Hedge or Generate Income',
                 desc: 'BUY to hedge or SELL to earn income. Flexible expirations — from overnight to 1 year — at your preferred strike price.',
               },
               {
-                icon: '/assets/icon4.png',
+                icon: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
                 title: 'Risk Management Tools',
                 desc: 'Use professional tools and simulations to enhance decisions — all inside powerful desktop and mobile platforms.',
               },
               {
-                icon: '/assets/icon5.png',
+                icon: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
                 title: 'Flexible Orders',
                 desc: 'Control entry/exit with stop & limit orders triggered by premium levels. Trade strategies more efficiently.',
               },
               {
-                icon: '/assets/icon6.png',
+                icon: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80',
                 title: 'For Money Managers',
                 desc: 'Manage multiple accounts with one ticket. Streamline trading operations and improve efficiency.',
               },
