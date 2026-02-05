@@ -54,8 +54,8 @@ import Bitcoin from "./pages/Bitcoin/Bitcoin";
 import HowBitcoin from "./pages/Bitcoin/HowBitcoin";
 import BitcoinETF from "./pages/Bitcoin/BitcoinETF";
 import Login from "./components/login";
-import UserDashboard from "./components/UserDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+// import UserDashboard from "./components/UserDashboard";
+// import ProtectedRoute from "./components/ProtectedRoute";
 import Footer from "./components/Footer";
 import ForexTradingCoursesPage from "./pages/Academy/ForexTradingCoursesPage";
 import StockTradingCoursesPage from "./pages/Academy/StockTradingCoursesPage";
@@ -109,14 +109,14 @@ const App: React.FC = () => {
               <Route path="/register" element={<Registration />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/reset-password" element={<ResetPassword />} />
-              <Route
+              {/* <Route
                 path="/dashboard"
                 element={
                   <ProtectedRoute>
                     <UserDashboard />
                   </ProtectedRoute>
                 }
-              />
+              /> */}
               <Route path="/WhatIsForex" element={<WhatIsForex />} />
               <Route path="/HowToTradeForex" element={<HowToTradeForex />} />
               <Route path="/VanillaOptions" element={<VanillaOptions />} />
