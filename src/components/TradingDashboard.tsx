@@ -212,36 +212,6 @@ const TradingDashboard: React.FC = () => {
            </div>
 
            {/* Quick Symbol Selector - CRITICAL for changing the chart */}
-           <div className="p-3 rounded-4 border border-secondary border-opacity-25" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
-             <label className="form-label text-info fw-bold mb-2">Select Active Asset</label>
-             <select 
-                className="form-select bg-dark text-white border-secondary" 
-                value={selectedSymbol}
-                onChange={(e) => {
-                  setSelectedSymbol(e.target.value);
-                  setSelectedName(e.target.selectedOptions[0].text);
-                }}
-             >
-                <optgroup label="Commodities (Live)">
-                  <option value="OANDA:XAUUSD">Gold (XAU/USD)</option>
-                  <option value="OANDA:XAGUSD">Silver (XAG/USD)</option>
-                  <option value="TVC:USOIL">Crude Oil (WTI)</option>
-                </optgroup>
-                <optgroup label="Forex (Live)">
-                  <option value="FX:EURUSD">EUR/USD</option>
-                  <option value="FX:GBPUSD">GBP/USD</option>
-                  <option value="FX:USDJPY">USD/JPY</option>
-                </optgroup>
-                <optgroup label="Crypto (Live)">
-                  <option value="BINANCE:BTCUSDT">Bitcoin (BTC)</option>
-                  <option value="BINANCE:ETHUSDT">Ethereum (ETH)</option>
-                  <option value="BINANCE:SOLUSDT">Solana (SOL)</option>
-                </optgroup>
-             </select>
-             <small className="text-muted d-block mt-2">
-               *Updates Chart & Order Form
-             </small>
-           </div>
         </div>
 
         {/* 3. RIGHT COLUMN: CHART & ORDER FORM */}
@@ -252,45 +222,6 @@ const TradingDashboard: React.FC = () => {
               <div className="col-12">
                 <div className="rounded-4 overflow-hidden shadow-sm border border-secondary border-opacity-25" style={{ height: '500px', backgroundColor: "#1e222d" }}>
                   <TVAdvancedChart symbol={selectedSymbol} />
-                </div>
-              </div>
-
-              {/* ORDER FORM */}
-              <div className="col-12">
-                <div className="rounded-4 p-4 border border-secondary border-opacity-25" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
-                  <div className="row align-items-center">
-                    <div className="col-md-4 mb-3 mb-md-0">
-                       <h4 className="mb-0">Trade <span className="text-info">{selectedName}</span></h4>
-                       <span className="badge bg-secondary mt-1">Live Execution</span>
-                    </div>
-                    
-                    <div className="col-md-8">
-                      <div className="row g-2">
-                         <div className="col-6 col-sm-3">
-                            <label className="form-label small text-muted">Action</label>
-                            <div className="btn-group w-100">
-                              <button className={`btn btn-sm ${orderType === 'buy' ? 'btn-success' : 'btn-outline-success'}`} onClick={() => setOrderType('buy')}>Buy</button>
-                              <button className={`btn btn-sm ${orderType === 'sell' ? 'btn-danger' : 'btn-outline-danger'}`} onClick={() => setOrderType('sell')}>Sell</button>
-                            </div>
-                         </div>
-                         <div className="col-6 col-sm-3">
-                            <label className="form-label small text-muted">Amount ($)</label>
-                            <NumberInput amount={amount} setAmount={setAmount} />
-                         </div>
-                         <div className="col-6 col-sm-3">
-                            <label className="form-label small text-muted">Leverage</label>
-                            <select className="form-select form-select-sm bg-dark text-white border-secondary" value={leverage} onChange={(e) => setLeverage(Number(e.target.value))}>
-                              <option value="1">1:1</option><option value="10">1:10</option><option value="50">1:50</option><option value="100">1:100</option>
-                            </select>
-                         </div>
-                         <div className="col-6 col-sm-3 d-flex align-items-end">
-                            <button className={`btn btn-sm w-100 fw-bold ${orderType === 'buy' ? 'btn-success' : 'btn-danger'}`} onClick={handleTrade} disabled={isLoading}>
-                              {isLoading ? '...' : 'Execute'}
-                            </button>
-                         </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
 
