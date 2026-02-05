@@ -4,7 +4,7 @@ import { FaBell, FaChartLine, FaMoneyCheckAlt, FaApple, FaAndroid } from 'react-
 import TradingAppImage from '../assets/images/trading-app.png'; 
 const MobilePlatforms: React.FC = () => {
   return (
-    <section className="mobile-platforms-section py-5 text-light">
+    <section className="mobile-platforms-section py-5 text-dark">
       <Container>
         <Row className="align-items-center g-5">
           <Col md={6}>

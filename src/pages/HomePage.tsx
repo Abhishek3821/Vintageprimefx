@@ -4,7 +4,7 @@ import TradingDashboard from "../components/TradingDashboard";
 import MobilePlatforms from "../components/MobilePlatform";
 import TradingPlatforms from "../components/TradingPlatform";
 import TrustSection from "../components/TrustSection";
-import Awards from "../components/Awards";
+// import Awards from "../components/Awards";
 import KnowledgeSection from "../components/KnowledgeSection";
 import WhyDifferent from "../components/WhyDifferent";
 import PartnerInTrade from "../components/PartnerInTrade";
@@ -19,7 +19,7 @@ const App: React.FC = () => {
       <MobilePlatforms/>
       <TradingPlatforms/>
       <TrustSection/>
-      <Awards/>
+      {/* <Awards/> */}
       <KnowledgeSection/>
       <WhyDifferent/>
       <PartnerInTrade/>     
