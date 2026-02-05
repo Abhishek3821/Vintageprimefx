@@ -7,20 +7,27 @@ import { toast } from 'react-toastify';
 // PART 1: TRADINGVIEW WIDGETS (Standard Script Injection)
 // ============================================================================
 
+// FIX: Updated type to allow 'HTMLDivElement | null' to fix the Vercel TS error
 const useScriptInjection = (
-  containerRef: React.RefObject<HTMLDivElement>,
+  containerRef: React.RefObject<HTMLDivElement | null>,
   scriptSrc: string,
   scriptContent: object
 ) => {
   useEffect(() => {
+    // If ref is null (not mounted yet), skip
     if (!containerRef.current) return;
-    containerRef.current.innerHTML = ''; // Clear previous
+    
+    // Clear previous widget to prevent duplicates
+    containerRef.current.innerHTML = '';
+    
     const script = document.createElement('script');
     script.src = scriptSrc;
     script.async = true;
     script.type = 'text/javascript';
     script.innerHTML = JSON.stringify(scriptContent);
+    
     containerRef.current.appendChild(script);
+    
     return () => {
       if (containerRef.current) containerRef.current.innerHTML = '';
     };
