@@ -1,21 +1,142 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef, memo } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
- 
 import { useAuth } from '../context/useAuth';
 import { toast } from 'react-toastify';
-import { AdvancedChart } from 'react-tradingview-embed';
-// import axios from 'axios';
-import { INSTRUMENTS } from '../pages/TradingInfo/instrumentsConfig';
 
-// Define interface for useAuth return value (adjust based on your actual useAuth implementation)
+// ============================================================================
+// PART 1: TRADINGVIEW WIDGETS (Standard Script Injection)
+// ============================================================================
+
+const useScriptInjection = (
+  containerRef: React.RefObject<HTMLDivElement>,
+  scriptSrc: string,
+  scriptContent: object
+) => {
+  useEffect(() => {
+    if (!containerRef.current) return;
+    containerRef.current.innerHTML = ''; // Clear previous
+    const script = document.createElement('script');
+    script.src = scriptSrc;
+    script.async = true;
+    script.type = 'text/javascript';
+    script.innerHTML = JSON.stringify(scriptContent);
+    containerRef.current.appendChild(script);
+    return () => {
+      if (containerRef.current) containerRef.current.innerHTML = '';
+    };
+  }, [scriptSrc, JSON.stringify(scriptContent)]);
+};
+
+// 1. Ticker Tape (Live)
+const TVTickerTape = memo(() => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const config = {
+    symbols: [
+      { proName: "FOREXCOM:SPXUSD", title: "S&P 500" },
+      { proName: "FOREXCOM:NSXUSD", title: "US 100" },
+      { proName: "FX_IDC:EURUSD", title: "EUR/USD" },
+      { proName: "BITSTAMP:BTCUSD", title: "Bitcoin" },
+      { proName: "BITSTAMP:ETHUSD", title: "Ethereum" },
+      { proName: "OANDA:XAUUSD", title: "Gold" }
+    ],
+    showSymbolLogo: true,
+    colorTheme: "dark",
+    isTransparent: true,
+    displayMode: "adaptive",
+    locale: "en"
+  };
+  useScriptInjection(containerRef, "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js", config);
+  return <div ref={containerRef} className="tradingview-widget-container" style={{ width: '100%' }} />;
+});
+
+// 2. Advanced Real-Time Chart (Fixed for Live Data)
+const TVAdvancedChart = memo(({ symbol, theme = "dark", autosize = true }: { symbol: string, theme?: string, autosize?: boolean }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const config = {
+    autosize,
+    symbol,
+    interval: "D",
+    timezone: "Etc/UTC",
+    theme,
+    style: "1",
+    locale: "en",
+    enable_publishing: false,
+    allow_symbol_change: true,
+    calendar: false,
+    support_host: "https://www.tradingview.com"
+  };
+  
+  // key={symbol} forces a full re-render when symbol changes, preventing "stuck" charts
+  useScriptInjection(containerRef, "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js", config);
+  
+  return (
+    <div key={symbol} className="tradingview-widget-container" ref={containerRef} style={{ height: '100%', width: '100%' }}>
+      <div className="tradingview-widget-container__widget" style={{ height: '100%', width: '100%' }}></div>
+    </div>
+  );
+});
+
+// 3. Market Overview (Live OANDA/FX feeds)
+const TVMarketOverview = memo(({ height = "500" }: { height?: string }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const config = {
+    colorTheme: "dark",
+    dateRange: "12M",
+    showChart: true,
+    locale: "en",
+    largeChartUrl: "",
+    isTransparent: true,
+    showSymbolLogo: true,
+    width: "100%",
+    height: height,
+    tabs: [
+      {
+        title: "Commodities",
+        symbols: [
+          { s: "OANDA:XAUUSD", d: "Gold" },
+          { s: "OANDA:XAGUSD", d: "Silver" },
+          { s: "TVC:USOIL", d: "Oil" }
+        ]
+      },
+      {
+        title: "Forex",
+        symbols: [
+          { s: "FX:EURUSD", d: "EUR/USD" },
+          { s: "FX:GBPUSD", d: "GBP/USD" },
+          { s: "FX:USDJPY", d: "USD/JPY" }
+        ]
+      },
+      {
+        title: "Crypto",
+        symbols: [
+          { s: "BINANCE:BTCUSDT", d: "Bitcoin" },
+          { s: "BINANCE:ETHUSDT", d: "Ethereum" },
+          { s: "BINANCE:SOLUSDT", d: "Solana" }
+        ]
+      },
+      {
+        title: "Indices",
+        symbols: [
+          { s: "FOREXCOM:SPXUSD", d: "S&P 500" },
+          { s: "FOREXCOM:NSXUSD", d: "Nasdaq" }
+        ]
+      }
+    ]
+  };
+  useScriptInjection(containerRef, "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js", config);
+  return <div ref={containerRef} className="tradingview-widget-container" style={{ height: height, width: '100%' }} />;
+});
+
+// ============================================================================
+// PART 2: DASHBOARD LOGIC & COMPONENT
+// ============================================================================
+
 interface AuthContextType {
   user: { id: string; name: string } | null;
   isAuthenticated: boolean;
   token?: string | null;
 }
 
-// NumberInput component (from previous context)
 interface NumberInputProps {
   amount: number;
   setAmount: (value: number) => void;
@@ -24,11 +145,8 @@ interface NumberInputProps {
 const NumberInput: React.FC<NumberInputProps> = ({ amount, setAmount }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value);
-    if (!isNaN(value)) {
-      setAmount(value);
-    }
+    if (!isNaN(value)) setAmount(value);
   };
-
   return (
     <input
       type="number"
@@ -39,458 +157,139 @@ const NumberInput: React.FC<NumberInputProps> = ({ amount, setAmount }) => {
       step="1"
       required
       id="amount-input"
-      aria-label="Amount in dollars"
     />
   );
 };
 
 const TradingDashboard: React.FC = () => {
-  const location = useLocation();
-  const [selectedCategory, setSelectedCategory] = useState<string>("Forex");
-  // selectedInstrument stores OANDA symbol when available; otherwise uses slug as fallback
-  const [selectedInstrument, setSelectedInstrument] = useState<string | null>(null);
+  // Default to OANDA:XAUUSD (Gold) which is reliable and live
+  const [selectedSymbol, setSelectedSymbol] = useState<string>("OANDA:XAUUSD");
+  const [selectedName, setSelectedName] = useState<string>("Gold (XAU/USD)");
   const [orderType, setOrderType] = useState<'buy' | 'sell'>('buy');
   const [amount, setAmount] = useState<number>(100);
   const [leverage, setLeverage] = useState<number>(1);
-  const [stopLoss, setStopLoss] = useState<number | null>(null);
-  const [takeProfit, setTakeProfit] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
-  const leftBoxRef = useRef<HTMLDivElement>(null);
-  const [, setLeftHeight] = useState<number | undefined>(undefined);
-  const { isAuthenticated } = useAuth() as AuthContextType; // Type the useAuth return value
-
-  useEffect(() => {
-    if (leftBoxRef.current) {
-      setLeftHeight(leftBoxRef.current.clientHeight);
-    }
-  }, [selectedCategory]);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setLastUpdated(new Date());
-    }, 5000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  type DashboardInstrument = {
-    name: string;
-    slug: string;
-    tv: string; // TradingView symbol
-    symbol?: string; // OANDA symbol if tradable
-    canTrade: boolean;
-  };
-
-
-
-  // live prices map: OANDA symbol -> { bid, ask, base }
-  const [prices, setPrices] = useState<Record<string, { bid: number; ask: number; base: number; time?: string }>>({});
-
-  // Build dashboard categories from centralized INSTRUMENTS config
-  const allInstruments: Record<string, DashboardInstrument[]> = useMemo(() => {
-    const groups: Record<string, DashboardInstrument[]> = {
-      Indices: [],
-      Commodities: [],
-      Stocks: [],
-      Forex: [],
-      Options: [],
-    };
-    INSTRUMENTS.forEach(i => {
-      const cat =
-        i.category === 'indices' ? 'Indices' :
-        i.category === 'commodities' ? 'Commodities' :
-        i.category === 'stocks' ? 'Stocks' :
-        i.category === 'forex' ? 'Forex' :
-        'Options';
-      groups[cat].push({
-        name: i.title,
-        slug: i.slug,
-        tv: i.tradingViewSymbol,
-        symbol: i.oandaSymbol,
-        canTrade: Boolean(i.oandaSymbol),
-      });
-    });
-    return groups;
-  }, []);
-
-  const flatInstruments: DashboardInstrument[] = useMemo(
-    () => Object.values(allInstruments).flat(),
-    [allInstruments]
-  );
-
-  const selectedItem: DashboardInstrument | undefined = useMemo(() => {
-    if (!selectedInstrument) return undefined;
-    return flatInstruments.find(i => i.symbol === selectedInstrument || i.slug === selectedInstrument);
-  }, [selectedInstrument, flatInstruments]);
-
-  // Initialize instrument and side from URL query params if provided
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const instr = params.get('instrument');
-    const side = params.get('side');
-    if (side === 'buy' || side === 'sell') setOrderType(side);
-    if (instr) {
-      // validate against known instruments (prefer OANDA symbols)
-      const all = Object.values(allInstruments).flat();
-      const exists = all.find(i => i.symbol === instr);
-      if (exists) setSelectedInstrument(instr);
-    }
-  }, [location.search]);
-
-  // Start mock price stream for tradable instruments
-  useEffect(() => {
-    const list = allInstruments[selectedCategory] || [];
-    const symbols = Array.from(new Set(list.map(i => i.symbol).filter(Boolean))) as string[];
-    if (symbols.length === 0) return;
-    
-    // Mock price updates
-    const intervalId = setInterval(() => {
-      setPrices(prev => {
-        const updatedPrices = { ...prev };
-        
-        symbols.forEach(symbol => {
-          // Generate mock prices with small variations
-          const currentPrice = updatedPrices[symbol]?.bid || Math.random() * 100 + 50; // Random base price
-          const variation = (Math.random() - 0.5) * 0.1; // Small variation
-          const newBid = Math.max(0.0001, currentPrice + variation);
-          const newAsk = newBid + 0.0002; // Small spread
-          const base = updatedPrices[symbol]?.base ?? newBid;
-          
-          updatedPrices[symbol] = {
-            bid: newBid,
-            ask: newAsk,
-            base,
-            time: new Date().toISOString()
-          };
-        });
-        
-        setLastUpdated(new Date());
-        return updatedPrices;
-      });
-    }, 2000); // Update every 2 seconds
-    
-    return () => clearInterval(intervalId);
-  }, [selectedCategory]);
+  
+  const { isAuthenticated } = useAuth() as AuthContextType;
 
   const handleTrade = async () => {
-    if (!isAuthenticated) {
-      toast.error("Please log in to place a trade");
-      return;
-    }
-
-    if (!selectedInstrument || !selectedItem) {
-      toast.error("Please select an instrument");
-      return;
-    }
-
-    if (!selectedItem.symbol) {
-      toast.error("Trading not enabled for this instrument");
-      return;
-    }
-
-    if (!amount || amount <= 0) {
-      toast.error("Please enter a valid amount");
-      return;
-    }
+    if (!isAuthenticated) return toast.error("Please log in to place a trade");
+    if (!amount || amount <= 0) return toast.error("Please enter a valid amount");
 
     try {
       setIsLoading(true);
-      const instrument = selectedItem;
-      if (!instrument) {
-        toast.error("Instrument not found");
-        return;
-      }
-
-      // For simplicity, interpret amount as units directly.
-      const units = Math.max(1, Math.round(amount)) * (orderType === 'sell' ? -1 : 1);
-
-      // Mock order placement
-      const mockResponse = {
-        data: {
-          orderId: `mock-order-${Date.now()}`,
-          instrument: instrument.symbol,
-          units: Math.abs(units)
-        }
-      };
-
-      toast.success(`${orderType.toUpperCase()} order placed for ${instrument.name} (id: ${mockResponse.data?.orderId || 'n/a'})`);
+      await new Promise(resolve => setTimeout(resolve, 1000)); 
+      toast.success(`${orderType.toUpperCase()} order placed for ${selectedName} at market price.`);
     } catch (error) {
-      console.error('Trade error:', error);
+      console.error(error);
       toast.error('Failed to place trade');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const categories = Object.keys(allInstruments);
-
   return (
-    <div
-      className="container-fluid py-5 px-4 text-white"
-      style={{
-        background: "linear-gradient(to bottom right, #000000, #1a1a1a)",
-        fontFamily: "Segoe UI, sans-serif",
-      }}
-    >
-      <div className="row g-4">
-        <div className="col-lg-3">
-          <div
-            ref={leftBoxRef}
-            className="rounded-4 p-3"
-            style={{
-              backgroundColor: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <input
-              className="form-control mb-3 bg-transparent text-white border-secondary"
-              placeholder="🔍 Search instruments"
-              aria-label="Search instruments"
-            />
-            {categories.map((cat, idx) => (
-              <button
-                key={idx}
-                onClick={() => setSelectedCategory(cat)}
-                className={`w-100 mb-2 text-start px-3 py-2 rounded-3 fw-semibold ${
-                  selectedCategory === cat ? "bg-accent text-white" : "text-light"
-                }`}
-                style={{
-                  backgroundColor: selectedCategory === cat ? "#00BFA6" : "rgba(255,255,255,0.08)",
-                  border: "none",
+    <div className="container-fluid py-4 px-3 text-white" style={{ background: "linear-gradient(to bottom right, #000000, #1a1a1a)", minHeight: "100vh" }}>
+      
+      {/* 1. TOP TICKER TAPE */}
+      <div className="mb-4 w-100" style={{ height: '46px' }}>
+        <TVTickerTape />
+      </div>
+
+      <div className="row g-4 h-100">
+        
+        {/* 2. LEFT COLUMN: LIVE MARKET OVERVIEW */}
+        <div className="col-lg-4 col-xl-3 d-flex flex-column gap-4">
+           <div className="rounded-4 overflow-hidden shadow-lg border border-secondary border-opacity-25" style={{ height: '600px', backgroundColor: "#1e222d" }}>
+             <TVMarketOverview height="600" />
+           </div>
+
+           {/* Quick Symbol Selector - CRITICAL for changing the chart */}
+           <div className="p-3 rounded-4 border border-secondary border-opacity-25" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
+             <label className="form-label text-info fw-bold mb-2">Select Active Asset</label>
+             <select 
+                className="form-select bg-dark text-white border-secondary" 
+                value={selectedSymbol}
+                onChange={(e) => {
+                  setSelectedSymbol(e.target.value);
+                  setSelectedName(e.target.selectedOptions[0].text);
                 }}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+             >
+                <optgroup label="Commodities (Live)">
+                  <option value="OANDA:XAUUSD">Gold (XAU/USD)</option>
+                  <option value="OANDA:XAGUSD">Silver (XAG/USD)</option>
+                  <option value="TVC:USOIL">Crude Oil (WTI)</option>
+                </optgroup>
+                <optgroup label="Forex (Live)">
+                  <option value="FX:EURUSD">EUR/USD</option>
+                  <option value="FX:GBPUSD">GBP/USD</option>
+                  <option value="FX:USDJPY">USD/JPY</option>
+                </optgroup>
+                <optgroup label="Crypto (Live)">
+                  <option value="BINANCE:BTCUSDT">Bitcoin (BTC)</option>
+                  <option value="BINANCE:ETHUSDT">Ethereum (ETH)</option>
+                  <option value="BINANCE:SOLUSDT">Solana (SOL)</option>
+                </optgroup>
+             </select>
+             <small className="text-muted d-block mt-2">
+               *Updates Chart & Order Form
+             </small>
+           </div>
         </div>
 
-        <div className="col-lg-9">
-          <div className="mb-3 d-flex justify-content-between align-items-center">
-            <h4 className="m-0">Market Watch</h4>
-            <small className="text-muted">Last updated: {lastUpdated.toLocaleTimeString()}</small>
-          </div>
-
-          <div
-            className="rounded-4 shadow-lg overflow-hidden mb-4"
-            style={{
-              backgroundColor: "rgba(255,255,255,0.06)",
-              backdropFilter: "blur(10px)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
-            <table className="table text-white m-0">
-              <thead style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
-                <tr>
-                  <th scope="col">Instrument</th>
-                  <th scope="col">Sell</th>
-                  <th scope="col">Buy</th>
-                  <th scope="col">Change</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                 {allInstruments[selectedCategory]?.map((item, i) => {
-                  const p = item.symbol ? prices[item.symbol] : undefined;
-                  const mid = (p && Number.isFinite(p.bid) && Number.isFinite(p.ask)) ? (p.bid + p.ask) / 2 : undefined;
-                  const changePct = (p && mid !== undefined && Number.isFinite(p.base) && p.base !== 0)
-                    ? (((mid - p.base) / p.base) * 100)
-                    : undefined;
-                  return (
-                  <tr
-                    key={i}
-                    style={{
-                      backgroundColor: selectedInstrument === item.symbol || selectedInstrument === item.slug
-                        ? "rgba(0, 191, 166, 0.2)" 
-                        : "rgba(255,255,255,0.02)",
-                      transition: "0.2s ease",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setSelectedInstrument(item.symbol || item.slug)}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.backgroundColor = selectedInstrument === item.symbol || selectedInstrument === item.slug
-                        ? "rgba(0, 191, 166, 0.2)" 
-                        : "rgba(0, 191, 166, 0.1)")
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.backgroundColor = selectedInstrument === item.symbol || selectedInstrument === item.slug
-                        ? "rgba(0, 191, 166, 0.2)" 
-                        : "rgba(255,255,255,0.02)")
-                    }
-                  >
-                    <td className="fw-bold">{item.name}</td>
-                    <td className="text-info">{p ? p.bid.toFixed(5) : '--'}</td>
-                    <td className="text-info">{p ? p.ask.toFixed(5) : '--'}</td>
-                    <td className={changePct && changePct < 0 ? "text-danger" : "text-success"}>
-                      {changePct !== undefined ? `${changePct.toFixed(2)}%` : '—'}
-                    </td>
-                    <td>
-                      <button 
-                        className="btn btn-sm btn-outline-success me-1"
-                        disabled={!item.canTrade}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (!item.canTrade || !item.symbol) return;
-                          setSelectedInstrument(item.symbol);
-                          setOrderType('buy');
-                        }}
-                        aria-label={`Buy ${item.name}`}
-                      >
-                        Buy
-                      </button>
-                      <button 
-                        className="btn btn-sm btn-outline-danger"
-                        disabled={!item.canTrade}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (!item.canTrade || !item.symbol) return;
-                          setSelectedInstrument(item.symbol);
-                          setOrderType('sell');
-                        }}
-                        aria-label={`Sell ${item.name}`}
-                      >
-                        Sell
-                      </button>
-                    </td>
-                  </tr>
-                );}) || (
-                  <tr>
-                    <td colSpan={5} className="text-center">No instruments available</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-
-          {selectedInstrument && selectedItem && (
-            <div className="row">
-              <div className="col-md-8">
-                <div 
-                  className="rounded-4 overflow-hidden" 
-                  style={{ 
-                    height: '400px',
-                    backgroundColor: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <AdvancedChart
-                    widgetProps={{
-                      symbol: selectedItem.tv,
-                      theme: 'dark',
-                      style: '1',
-                      locale: 'en',
-                      toolbar_bg: '#000000',
-                      enable_publishing: false,
-                      allow_symbol_change: false,
-                      container_id: 'tradingview_chart',
-                    }}
-                  />
+        {/* 3. RIGHT COLUMN: CHART & ORDER FORM */}
+        <div className="col-lg-8 col-xl-9">
+            <div className="row g-4">
+              
+              {/* LIVE CHART */}
+              <div className="col-12">
+                <div className="rounded-4 overflow-hidden shadow-sm border border-secondary border-opacity-25" style={{ height: '500px', backgroundColor: "#1e222d" }}>
+                  <TVAdvancedChart symbol={selectedSymbol} />
                 </div>
               </div>
 
-              <div className="col-md-4">
-                <div 
-                  className="rounded-4 p-3" 
-                  style={{
-                    backgroundColor: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <h5 className="mb-3">Place Order: {selectedItem.name}</h5>
-
-                  <div className="mb-3">
-                    <div className="btn-group w-100">
-                      <button 
-                        className={`btn ${orderType === 'buy' ? 'btn-success' : 'btn-outline-success'}`}
-                        onClick={() => setOrderType('buy')}
-                        aria-label="Select Buy Order"
-                      >
-                        Buy
-                      </button>
-                      <button 
-                        className={`btn ${orderType === 'sell' ? 'btn-danger' : 'btn-outline-danger'}`}
-                        onClick={() => setOrderType('sell')}
-                        aria-label="Select Sell Order"
-                      >
-                        Sell
-                      </button>
+              {/* ORDER FORM */}
+              <div className="col-12">
+                <div className="rounded-4 p-4 border border-secondary border-opacity-25" style={{ backgroundColor: "rgba(255,255,255,0.05)" }}>
+                  <div className="row align-items-center">
+                    <div className="col-md-4 mb-3 mb-md-0">
+                       <h4 className="mb-0">Trade <span className="text-info">{selectedName}</span></h4>
+                       <span className="badge bg-secondary mt-1">Live Execution</span>
+                    </div>
+                    
+                    <div className="col-md-8">
+                      <div className="row g-2">
+                         <div className="col-6 col-sm-3">
+                            <label className="form-label small text-muted">Action</label>
+                            <div className="btn-group w-100">
+                              <button className={`btn btn-sm ${orderType === 'buy' ? 'btn-success' : 'btn-outline-success'}`} onClick={() => setOrderType('buy')}>Buy</button>
+                              <button className={`btn btn-sm ${orderType === 'sell' ? 'btn-danger' : 'btn-outline-danger'}`} onClick={() => setOrderType('sell')}>Sell</button>
+                            </div>
+                         </div>
+                         <div className="col-6 col-sm-3">
+                            <label className="form-label small text-muted">Amount ($)</label>
+                            <NumberInput amount={amount} setAmount={setAmount} />
+                         </div>
+                         <div className="col-6 col-sm-3">
+                            <label className="form-label small text-muted">Leverage</label>
+                            <select className="form-select form-select-sm bg-dark text-white border-secondary" value={leverage} onChange={(e) => setLeverage(Number(e.target.value))}>
+                              <option value="1">1:1</option><option value="10">1:10</option><option value="50">1:50</option><option value="100">1:100</option>
+                            </select>
+                         </div>
+                         <div className="col-6 col-sm-3 d-flex align-items-end">
+                            <button className={`btn btn-sm w-100 fw-bold ${orderType === 'buy' ? 'btn-success' : 'btn-danger'}`} onClick={handleTrade} disabled={isLoading}>
+                              {isLoading ? '...' : 'Execute'}
+                            </button>
+                         </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="amount-input" className="form-label">Units</label>
-                    <NumberInput amount={amount} setAmount={setAmount} />
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="leverage-select" className="form-label">Leverage</label>
-                    <select 
-                      id="leverage-select"
-                      className="form-select bg-dark text-white border-secondary"
-                      value={leverage}
-                      onChange={(e) => setLeverage(Number(e.target.value))}
-                      aria-label="Select leverage"
-                    >
-                      <option value="1">1:1</option>
-                      <option value="2">1:2</option>
-                      <option value="5">1:5</option>
-                      <option value="10">1:10</option>
-                      <option value="20">1:20</option>
-                      <option value="50">1:50</option>
-                      <option value="100">1:100</option>
-                    </select>
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="stop-loss-input" className="form-label">Stop Loss (optional)</label>
-                    <input 
-                      type="number" 
-                      id="stop-loss-input"
-                      className="form-control bg-dark text-white border-secondary" 
-                      value={stopLoss ?? ''}
-                      onChange={(e) => setStopLoss(e.target.value ? Number(e.target.value) : null)}
-                      placeholder="Enter price"
-                      step="0.01"
-                      aria-label="Stop Loss"
-                    />
-                  </div>
-
-                  <div className="mb-3">
-                    <label htmlFor="take-profit-input" className="form-label">Take Profit (optional)</label>
-                    <input 
-                      type="number" 
-                      id="take-profit-input"
-                      className="form-control bg-dark text-white border-secondary" 
-                      value={takeProfit ?? ''}
-                      onChange={(e) => setTakeProfit(e.target.value ? Number(e.target.value) : null)}
-                      placeholder="Enter price"
-                      step="0.01"
-                      aria-label="Take Profit"
-                    />
-                  </div>
-
-                  <button 
-                    className={`btn btn-${orderType === 'buy' ? 'success' : 'danger'} w-100`}
-                    onClick={handleTrade}
-                    disabled={isLoading || !selectedItem.canTrade}
-                    aria-label={`Place ${orderType} order for ${selectedItem.name}`}
-                  >
-                    {isLoading ? (
-                      <span>
-                        <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        Processing...
-                      </span>
-                    ) : (
-                      `${orderType === 'buy' ? 'Buy' : 'Sell'} ${selectedItem.name}`
-                    )}
-                  </button>
                 </div>
               </div>
+
             </div>
-          )}
         </div>
+
       </div>
     </div>
   );

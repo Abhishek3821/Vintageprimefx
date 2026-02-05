@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
- 
+// Imported the video file
+import videoSource from '../assets/bg.mp4'; 
 
 const LandingPage: React.FC = () => {
   useEffect(() => {
@@ -53,17 +54,47 @@ const LandingPage: React.FC = () => {
 
   return (
     <div
-      className="container-fluid landing-bg px-3 px-md-4 text-white d-flex align-items-center"
+      className="container-fluid landing-bg px-3 px-md-4 text-white d-flex align-items-center position-relative"
       style={{
-        backgroundImage:
-          "linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('/assets/back3.jpg')",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
         minHeight: "100vh",
+        overflow: "hidden", // Prevents video overflow
       }}
     >
-      <div className="row w-100 align-items-center gy-4">
+      {/* --- VIDEO BACKGROUND START --- */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          top: "0",
+          left: "0",
+          zIndex: "0", // Puts video behind content
+        }}
+      >
+        <source src={videoSource} type="video/mp4" />
+      </video>
+
+      {/* Dark Overlay Gradient (to make text readable) */}
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          top: "0",
+          left: "0",
+          background: "linear-gradient(to bottom right, rgba(0,0,0,0.7), rgba(0,0,0,0.5))",
+          zIndex: "1",
+        }}
+      ></div>
+      {/* --- VIDEO BACKGROUND END --- */}
+
+      {/* Main Content Content (Z-index 2 to sit on top of video) */}
+      <div className="row w-100 align-items-center gy-4 position-relative" style={{ zIndex: 2 }}>
         <div className="col-lg-6">
           <h1 className="display-4 fw-bold" style={{ lineHeight: "1.2" }}>
             Trade Smarter
