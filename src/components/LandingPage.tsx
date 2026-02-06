@@ -134,14 +134,16 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="col-lg-6">
+        <div className="col-lg-6 ">
           <div
             className="rounded-4 p-3 p-md-4 shadow-lg"
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.08)",
               backdropFilter: "blur(12px)",
               border: "1px solid rgba(255,255,255,0.15)",
-              overflowX: "auto",
+              overflowX: "hidden",
+              // overflowY: "auto",
+              overflowY: "hidden",
             }}
           >
             {tradingItems.map((item, index) => (

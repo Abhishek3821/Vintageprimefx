@@ -21,14 +21,8 @@ import Twitter from "../assets/twitter.svg"; // Add this file
 
 const Footer = () => {
   const paymentMethods = [
-    { name: "mastercard", src: Mastercard },
-    { name: "visa", src: Visa },
     { name: "paypal", src: PayPal },
-    { name: "skrill", src: Skrill },
-    { name: "neteller", src: Neteller },
-    { name: "wire-transfer", src: WireTransfer },
-    { name: "perfect-money", src: PerfectMoney },
-    { name: "boleto", src: Boleto },
+   
   ];
 
   const socialPlatforms = [
@@ -112,9 +106,9 @@ const Footer = () => {
                 key={i}
                 src={method.src}
                 alt={method.name}
-                height="19"
+                height="39"
                 className="footer-icon"
-                style={{ maxWidth: "30px" }}
+                style={{ maxWidth: "60px" }}
               />
             ))}
           </div>
